@@ -1,4 +1,4 @@
-import { BrowserRouter,Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter,Routes, Route } from 'react-router-dom';
 import {Detail, Form, Home, Landing} from './views';
 
 
@@ -11,8 +11,6 @@ function App() {
     
       <Routes>
       
-        
-    
         <Route exact path="/" element={<Landing />} />
         <Route exact path="/home" element={<Home />} />
         <Route exact path="/detail/:id" element={<Detail />} />

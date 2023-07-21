@@ -5,8 +5,6 @@ const { API_KEY } = process.env;
 const cleanRecipeData = require ("../controllers/cleanRecipeData");
 
 
-
-
 // Función de búsqueda de recetas por nombre (title)
 const searchRecipeName = async (name) => {
   const dbRecipes = await Recipe.findAll({
@@ -33,8 +31,6 @@ const searchRecipeName = async (name) => {
   const filteredInfo = infoApiRecipe.filter(recipe => recipe.title.toLowerCase().includes(name.toLowerCase()));
   return [...dbInfo, ...filteredInfo];
 };
-
-
 
 
 
@@ -78,15 +74,14 @@ const getAllRecipes = async () => {
       }
     }))
 
-
-  return [...dbinfo, ...infoApiRecipe]
+    
+   return [...dbinfo, ...infoApiRecipe]
 
 };
 
+
 const getRecipeById = async (id, location) => {
-
   if (location === 'api') {
-
     const apiRecipe = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`)
       .then((response) => {
         const ele = response.data;

@@ -1,4 +1,4 @@
- @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&display=swap');
+ @import url('https://fonts.google.com/specimen/Montserrat?query=montserrat');
 
 
  .card {
@@ -18,7 +18,7 @@
 
  .name {
 
-   font-size: 18px;
+   font-size: 15px;
    letter-spacing: 0px;
    word-spacing: 2px;
    color: #000000;
@@ -32,11 +32,14 @@
  }
 
  .image {
-   width: 20rem;
-   height: 250px;
-   display: block;
-   align-items: center;
-   justify-content: center;
-   margin-left: 2rem;
-   margin-top: 20px;
- }
+  border-radius: 3px 3px 3px 3px;
+  justify-content: center;
+  width: 10em;
+  height: 8em;
+  filter: brightness(110%);
+  border-color: rgb(76, 117, 107);
+  margin-bottom: 15px;
+  margin-top: 20px ;
+  margin-right: 15px;
+  padding: 0.5em;
+}

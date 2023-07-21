@@ -24,7 +24,7 @@ const CardComponent = ({image, title, diets, id, healthScore})=>{
         </Link>
             <h2 className={style.name}> Diets: {diets}</h2>
             <h2 className={style.name}> HealthScore: {healthScore}</h2>
-            <img src={image} alt="img" className={style.image}/>
+            <img src={image} alt="img" className={style.image}></img>
         </div>
         </>
     )
