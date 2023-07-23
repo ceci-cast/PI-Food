@@ -5,11 +5,12 @@ import {
     GET_ALL_RECIPES,
     RECIPE_DETAIL,
     GET_RECIPE_BY_TITLE,
-    FILTER_DIETS,
+    GET_DIETS,
     FILTER_BY_DIET,
     FILTER_CREATED,
     ORDER_BY_NAME,
     ORDER_BY_HEALTH_SCORE,
+    
 } from "./actions-types";
 
 
@@ -64,15 +65,16 @@ export const getRecipeByTitle = (title) => {
 
 };
 
-export const filterDiets = () => {
-    return async function (dispatch) {
-        const json = await axios.get("/diets");
-        const data = json.data;
+
+export const getDiets = ()=>{
+    return async function(dispatch){
+        const json= await axios.get(`${apiUrl}/diets`)
+        const data= json.data;
         return dispatch({
-            type: FILTER_DIETS,
+            type: GET_DIETS,
             payload: data
         })
-
+        
     }
 };
 
@@ -105,4 +107,13 @@ export const orderByHealthScore = (payload) => {
         type: ORDER_BY_HEALTH_SCORE,
         payload
     }
+};
+
+export const createRecipe = (payload)=>{
+    return async function(dispatch){
+        
+     const data = await axios.post(`${apiUrl}/recipes`, payload)
+         return data;   
+    }
+
 };

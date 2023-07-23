@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import ContainerComponent from '../../components/Container/Container.Component';
-import { getAllRecipes } from '../../redux/actions';
+import { getAllRecipes, getDiets } from '../../redux/actions';
 import { useDispatch } from "react-redux";
 import NavBar from '../../components/NavBar/NavBar';
 import SearchBar from "../../components/Search/Search.Component"
-//import Paginado from "../../components/Paginado/Paginado";
 import style from "./Home.module.css"
 import FilterComponent from '../../components/Filters/Filter.Component';
+//import Paginado from '../../components/Paginado/Paginado';
 
 
 const Home = () => {
 
     const dispatch = useDispatch();   //REDUX
-    // const allRecipes = useSelector((state) => state.recipes)
+    //const allRecipes = useSelector((state) => state.allRecipes)
 
 
     //const [recipes, setRecipes] = useState([])
     const [var1, setVar1] = useState(false)
-
 
     // const [currentPage, setCurrentPage] = useState(1);
     // const [recipePerPage, setRecipePerPage] = useState(9);
@@ -25,7 +24,11 @@ const Home = () => {
     // const indexOfFirstRecipe = indexOfLastRecipe - recipePerPage;
     // const currentRecipes = allRecipes.slice(indexOfFirstRecipe, indexOfLastRecipe) // array que tiene las recetas que se muestran por pagina
 
-
+    // const [currentPage, setCurrentPage] = useState(1);
+    // const [recipesPerPage,setRecipesPerPage] = useState(9);
+    // const indexOfLastRecipe = currentPage * recipesPerPage
+    // const indexOfFirstRecipe = indexOfLastCountry - recipesPerPage
+    // const currentCountryPage = allRecipes.slice(indexOfFirstCountry, indexOfLastCountry)
 
     // const paginado = (pageNumber) => {
     //     setCurrentPage(pageNumber)
@@ -37,7 +40,9 @@ const Home = () => {
         // if (var1 == true) {
         //     //get_recipes()
         // }
+        //console.log(allRecipes.length);
         dispatch(getAllRecipes())     //REDUX
+        dispatch(getDiets())     //REDUX
     }, [dispatch]);
 
     // const handleClick = (e)=>{
@@ -82,7 +87,10 @@ const Home = () => {
 
     return (
         <>
+
+
             <div className={style.container}>
+
                 <div>
                     {
                         var1 === true ? <NavBar /> : null
@@ -95,7 +103,7 @@ const Home = () => {
                         Ocultar Barra de Navegación
                     </button>
                     <button onClick={() => dispatch(getAllRecipes())}>
-                        Traer Recipes
+                        Reload Recipes
                     </button>/
                 </div>
 
@@ -111,7 +119,9 @@ const Home = () => {
                     <ContainerComponent />
                 </div>
 
-
+                {/* <div>
+                    <Paginado recipesPerPage={recipesPerPage} allRecipes={allRecipes.length} paginado={paginado} />
+                </div> */}
             </div>
 
 

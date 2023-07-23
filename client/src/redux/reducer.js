@@ -2,11 +2,12 @@ import {
   GET_ALL_RECIPES,
   RECIPE_DETAIL,
   GET_RECIPE_BY_TITLE,
-  FILTER_DIETS,
+  GET_DIETS,
   FILTER_BY_DIET,
   FILTER_CREATED,
   ORDER_BY_NAME,
   ORDER_BY_HEALTH_SCORE,
+  CREATE_RECIPE
 } from "./actions-types";
 
 const initialState = {
@@ -14,6 +15,8 @@ const initialState = {
   detail: [],
   recipes: [],
   diets: [],
+  allrecipesState: [],
+  
 
 }
 
@@ -26,7 +29,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         allRecipes: action.payload,
-      }
+      };
 
     case RECIPE_DETAIL:
       return {
@@ -40,7 +43,7 @@ const rootReducer = (state = initialState, action) => {
         allRecipes: action.payload
       };
 
-    case FILTER_DIETS:
+    case GET_DIETS:
       return {
         ...state,
         diets: action.payload,
@@ -97,6 +100,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         allRecipes: orderHS
       };
+
+    case CREATE_RECIPE:
+      return {
+        ...state
+      };
+
 
     default:
       return { ...state };
