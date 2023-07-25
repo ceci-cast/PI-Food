@@ -1,51 +1,45 @@
 import React from 'react';
 import style from "../Paginado/Paginado.module.css"
 
-// const Paginado = ({ recipesPerPage, allRecipes, paginado }) => {
 
-//     const pageNumbers = [];
+const Paginado= ({recipesPerPage, allRecipes, paginado, currentPage, setCurrentPage}) => {
 
-//     for (let i = 0; i <= Math.ceil(allRecipes / recipesPerPage - 1); i++) {
-//         pageNumbers.push(i + 1)
-//     }
+    const pageNumbers = [];
 
-//     return (
-//         <nav>
-//             <div >
-//                 {pageNumbers && pageNumbers.map(num => {
-//                     return <div className={style.div}> <button key={num} onClick={() => paginado(num)} className={style.paginado}> {num} </button> </div>
-//                 })}
-//             </div>
-//         </nav>
-//     )
-
-// }
-
-
-
-// export default Paginado;
-
-function Paginado({recipesPerPage , allRecipes , paginado}) {
-    const pageNumbers = []
-
-    for ( let i=1; i<=Math.ceil(allRecipes/recipesPerPage); i++ ){
-        pageNumbers.push(i)
+    for (let i = 1; i <= Math.ceil(allRecipes/recipesPerPage); i++) {
+        pageNumbers.push(i);
     }
+    
+    function handlePrev() {
+        setCurrentPage(currentPage => currentPage > 1 ? currentPage - 1 : currentPage);
+      }
 
-  
+    function handleNext() {
+        setCurrentPage(currentPage => currentPage < pageNumbers.length ? currentPage + 1 : currentPage);
+      }
 
-  return (
-    <nav>
-        <div className={style.paginado}>
-            { pageNumbers && pageNumbers.map(num => {
-               return <button key={num} className={style.number} onClick={()=>paginado(num)}> {num} </button>
-            }) }
-        </div>
-    </nav>
-  )
+    return(
+        <nav className={style.containerPaginado}>
+            <div>
+            </div>
+            <ul className={style.containerLi}>
+                { pageNumbers && pageNumbers.map((number) => {
+                    return (<li className={style.boxLi} key={number}>
+                        <button onClick={()=> paginado(number)} className={style.button} >{number}</button>
+                    </li>
+                    )
+                })}
+            </ul>
+            <div className={style.containerButtons}>
+            <a onClick={handlePrev} > prev </a>
+            <a onClick={handleNext} > next </a>
+            </div>
+           
+        </nav>
+    )
 }
 
-export default Paginado
+export default Paginado;
 
 
 

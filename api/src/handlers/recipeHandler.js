@@ -1,7 +1,8 @@
 const { getAllRecipes,
     getRecipeById,
     searchRecipeName,
-    createNewRecipe
+    createNewRecipe,
+    deleteRecipe
 } = require("../controllers/recipeController")
 
 
@@ -48,9 +49,21 @@ const postHandler = async (req, res) => {
 
 };
 
+const deleteRecipeHandler = async (req, res) => {
+    const { id } = req.params;
+      console.log(id);
+    try {
+      const response = await deleteRecipe(id);
+      res.status(200).json(response);
+    } catch (error) {
+      return res.status(404).json({ error: error.message });
+    }
+  };
+
 
 module.exports = {
     recipeHandler,
     recipeIdHandler,
-    postHandler
+    postHandler,
+    deleteRecipeHandler
 }

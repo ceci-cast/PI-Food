@@ -1,24 +1,64 @@
 
-.paginado {
-    display: inline-block;
-    margin-top: 1em;
-    margin-bottom: 2em;
-  }
+.containerPaginado{
+    width: 48vw;
 
-.paginado button{
-    color: black;
-    float: left;
-    padding: 8px 16px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.containerLi{
+    width: 48vw;
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+}
+
+.boxLi{
+    width: 6vw;
+    height: 4vh;
+    background-color: rgb(114, 154, 151);
+    transition: all 0.2s;
+    border-radius: 10px;
+    margin: auto 0.1vw;
+}
+
+.boxLi:hover{
+    width: 7vw;
+    height: 5vh;
+    background-color: rgb(255, 255, 255);
+
+}
+
+.boxLi:active{
+    width: 5vw;
+    height: 3vh;
+}
+
+.button{
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 5px;
     text-decoration: none;
-    transition: background-color .3s;
-    border: 1px solid #ddd;
-    margin: 0 4px;
+    background-color: rgba(197, 0, 0, 0);
 }
 
-.paginado button:active{
-    background-color: #4CAF50;
-    color: lightseagreen;
-    border: 1px solid #4CAF50;    
+
+.button:focus{
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    background-color: rgb(255, 255, 255);
 }
 
-.paginado button:hover:not(.active) {background-color: rgb(191, 48, 48);}
+.containerButtons{
+    height: 50%;
+}
+

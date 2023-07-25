@@ -21,14 +21,13 @@ const Form = () => {
     const [form, setForm] = useState(initialFormValues);
     const [checked, setChecked] = useState({});
     const [errors, setErrors] = useState(initialFormValues);
-    
+
 
     const handleChange = (event) => {
         const property = event.target.name;
         const value = event.target.value;
 
         validate({ ...form, [property]: value })
-
         setForm({ ...form, [property]: value })
     };
 
@@ -49,7 +48,7 @@ const Form = () => {
     function isValidHealthScore(value) {
         const parsedValue = Number(value);
         return !isNaN(parsedValue) && Number.isInteger(parsedValue) && parsedValue > 0 && parsedValue < 100;
-      }
+    }
 
 
     const validate = (form) => {
@@ -59,7 +58,7 @@ const Form = () => {
         newErrors.title = !form.title ? "Complete the title" : "";  // si title esta vacio o incompleto se envia msge de error
         newErrors.summary = !form.summary ? "Complete the summary" : "";
         newErrors.instructions = !form.instructions ? "Complete the instructions" : "";
-        
+
         if (!isValidHealthScore(form.healthScore)) {
             newErrors.healthScore = "Health Score must be a number between 1 and 100";
         }
@@ -74,11 +73,8 @@ const Form = () => {
             const imageRegex = /\.(jpeg|jpg|gif|png|webp)$/i;
             return typeof url === "string" && url.match(imageRegex);
         }
-        newErrors.image = isValidImageUrl(form.image) ? "" : "Enter a valid image URL";
-        
-        setErrors(newErrors)
+        newErrors.image = isValidImageUrl(form.image) ? "" : "Enter a valid image URL"; setErrors(newErrors)
     }
-
 
 
     const handleSubmit = (event) => {
@@ -92,19 +88,13 @@ const Form = () => {
         navigate("/home");
     };
 
-
-
     return (
         <>
             <div className={style.contenedor}>
-                <div>
-                    <Link to="/home">
-                        <button className={style.button}>Return Home</button>
-                    </Link>
-                </div>
+
                 <div className={style.formContainer}>
                     <h1 className={style.formTitle}>Create your recipe</h1>
-
+                    <br></br>
 
                     <form onSubmit={handleSubmit}>
                         <div>
@@ -116,8 +106,9 @@ const Form = () => {
                                 onChange={handleChange}
                                 className={style.inp}
                             />
+                            {errors.title && <span className={style.error} >{errors.title}</span>}
                         </div>
-                        {errors.title && <span className={style.title} >{errors.title}</span>}
+
 
 
                         <div>
@@ -128,8 +119,9 @@ const Form = () => {
                                 value={form.summary}
                                 className={style.inp}
                             />
+                            {errors.summary && <span className={style.error} >{errors.summary}</span>}
                         </div>
-                        {errors.summary && <span className={style.title} >{errors.summary}</span>}
+
 
 
 
@@ -140,10 +132,10 @@ const Form = () => {
                                 name="healthScore"
                                 value={form.healthScore}
                                 onChange={handleChange}
-                                className={style.inp}
-                            />
+                                className={style.inphs}
+                            />{errors.healthScore && <span className={style.error} >{errors.healthScore}</span>}
                         </div>
-                        {errors.healthScore && <span className={style.title} >{errors.healthScore}</span>}
+
 
 
                         <div>
@@ -154,8 +146,9 @@ const Form = () => {
                                 value={form.instructions}
                                 className={style.inp}
                             />
+                            {errors.instructions && <span className={style.error} >{errors.instructions}</span>}
                         </div>
-                        {errors.instructions && <span className={style.title} >{errors.instructions}</span>}
+
 
 
                         <hr />
@@ -177,12 +170,14 @@ const Form = () => {
                                         />
                                         {element.name}
                                     </label>
+
                                 );
                             })
                         ) : (
                             <div>Waiting...</div>
-                        )}
-                        {errors.diets && <span className={style.title} >{errors.diets}</span>}
+
+                        )} {errors.diets && <span className={style.error} >{errors.diets}</span>}
+
 
 
                         <hr />
@@ -196,9 +191,14 @@ const Form = () => {
                                 className={style.inp}
                             />
                         </div>
-                        {errors.image && <span className={style.title} >{errors.image}</span>}
+                        {errors.image && <span className={style.error} >{errors.image}</span>}
                         <hr />
-                        <button type="submit" className={style.button}> Submit </button>
+                        <button type="submit" className={style.button}> Submit </button>  
+                        <div className={style.btnhome}>
+                            <Link to="/home">
+                                <button className={style.button}>Return Home</button>
+                            </Link>
+                        </div>
 
                     </form>
                 </div>

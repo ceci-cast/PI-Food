@@ -10,12 +10,11 @@ import {
     FILTER_CREATED,
     ORDER_BY_NAME,
     ORDER_BY_HEALTH_SCORE,
-    
+    DELETE_RECIPE
+
 } from "./actions-types";
 
-
 const apiUrl = "http://localhost:3001";
-
 
 export const getAllRecipes = () => {
     return async function (dispatch) {
@@ -32,7 +31,6 @@ export const getAllRecipes = () => {
 };
 
 
-
 export const recipeDetail = (id) => {
     return async function (dispatch) {
         try {
@@ -43,9 +41,7 @@ export const recipeDetail = (id) => {
         } catch (error) {
             return alert(error.message)
         }
-
     }
-
 };
 
 
@@ -62,19 +58,18 @@ export const getRecipeByTitle = (title) => {
             return alert(error.response.data)
         }
     }
-
 };
 
 
-export const getDiets = ()=>{
-    return async function(dispatch){
-        const json= await axios.get(`${apiUrl}/diets`)
-        const data= json.data;
+export const getDiets = () => {
+    return async function (dispatch) {
+        const json = await axios.get(`${apiUrl}/diets`)
+        const data = json.data;
         return dispatch({
             type: GET_DIETS,
             payload: data
         })
-        
+
     }
 };
 
@@ -109,11 +104,24 @@ export const orderByHealthScore = (payload) => {
     }
 };
 
-export const createRecipe = (payload)=>{
-    return async function(dispatch){
-        
-     const data = await axios.post(`${apiUrl}/recipes`, payload)
-         return data;   
-    }
+export const createRecipe = (payload) => {
+    return async function (dispatch) {
 
+        const data = await axios.post(`${apiUrl}/recipes`, payload)
+        return data;
+    }
 };
+
+export const deleteRecipe = (id) => {
+    return async function (dispatch) {
+
+            try {
+                const response = (await axios.delete(`${apiUrl}/recipes/${id}`)); 
+                return dispatch({ type: DELETE_RECIPE, payload: response }) ? alert("recipe deleted"): response;
+            } catch (error) {
+                return alert(error.response.data.error)
+            }
+        };
+    };
+
+

@@ -1,6 +1,5 @@
 @import url('https://fonts.google.com/specimen/Montserrat?query=montserrat');
 
-/* Resto de tus estilos */
 
 /* Estilos del contenedor que envuelve todos los items */
 .formContainer {
@@ -13,29 +12,71 @@
   }
   
   /* Estilos del título */
+  .error {
+    font-size: 15px;
+    font-weight: bold;
+    text-align: end;
+    margin-bottom: 10px;
+    color:  rgba(0, 0, 255, 0.795);
+
+  }
+  
   .formTitle {
     font-size: 24px;
     font-weight: bold;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
-  
+
   /* Estilos del botón */
   .button {
-    align-content: center;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin-top: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    background-size:auto;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    width: 60px;
+    height: 30px;
+    border: 0;
+    margin-bottom: 20px;
     cursor: pointer;
-    border-radius: 20px;
-    
-  }
+    border-radius: 35px;
+    margin-left: 100px;
+    border: 1px solid #537b7f;
+}
+
+.btnhome {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  background-size:auto;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  width: 60px;
+  height: 30px;
+  border: 0;
+  margin-bottom: 20px;
+  cursor: pointer;
+  border-radius: 35px;
+  margin-left: 100px;
+  border: 1px solid #537b7f;
+}
+
+.button:hover {
+    box-shadow: 5px 5px 5px 5px rgba(58, 113, 100, 0.765)
+}
   
   /* Estilos del input y textarea */
   .inp {
     width: 50%;
+    padding: 5px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    border-radius: 10px;
+    
+  }
+
+  .inphs {
+    width: 10%;
     padding: 5px;
     margin-bottom: 10px;
     margin-left: 10px;

@@ -39,7 +39,8 @@ const FilterComponent = () => {
         </div>
         <div className={style.contenedorSelect}>
           <div className={style.containerSelect}>
-            <select onChange={handleOrderByName} className={style.selectWrapper}>
+            <select onChange={handleOrderByName} className={style.selectWrapper} >
+              <option value=""> Select an option...</option>
               <option value="asc">Ascending A-Z</option>
               <option value="des">Descending Z-A</option>
             </select>
@@ -71,7 +72,7 @@ const FilterComponent = () => {
         <br></br>
       </span>
       <select onChange={handleFilterDiet} className={style.selectWrapper}>
-        <option value="">Select Diet</option>
+        <option value="">Select Diet...</option>
         <option value="all">All</option>
         <option value="gluten free">Gluten free</option>
         <option value="dairy free">Dairy free</option>
@@ -87,7 +88,7 @@ const FilterComponent = () => {
       </select>
 
       <select onChange={handleFilterCreated} className={style.selectWrapper}>
-        <option value="">Select Origin</option>
+        <option value="">Select Origin...</option>
         <option value="all">All</option>
         <option value="api">Recipes Api</option>
         <option value="bdd">Recipes DataBase</option>

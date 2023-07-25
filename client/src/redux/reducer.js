@@ -7,7 +7,8 @@ import {
   FILTER_CREATED,
   ORDER_BY_NAME,
   ORDER_BY_HEALTH_SCORE,
-  CREATE_RECIPE
+  CREATE_RECIPE,
+  DELETE_RECIPE
 } from "./actions-types";
 
 const initialState = {
@@ -26,87 +27,55 @@ const rootReducer = (state = initialState, action) => {
   switch (action.type) {
 
     case GET_ALL_RECIPES:
-      return {
-        ...state,
-        allRecipes: action.payload,
-      };
+      return {...state, allRecipes: action.payload, recipes: action.payload };
 
     case RECIPE_DETAIL:
-      return {
-        ...state,
-        detail: action.payload
-      };
+      return {...state, detail: action.payload };
 
     case GET_RECIPE_BY_TITLE:
-      return {
-        ...state,
-        allRecipes: action.payload
-      };
+      return {...state, allRecipes: action.payload };
 
     case GET_DIETS:
-      return {
-        ...state,
-        diets: action.payload,
-      };
+      return {...state, diets: action.payload};
 
     case FILTER_BY_DIET:
       const allRecipes = state.allRecipes
       const dietFilter = action.payload === 'all' ? allRecipes : allRecipes.filter(ele => ele.diets?.includes(action.payload))
-
-      return {
-        ...state,
-        allRecipes: dietFilter,
-      }
+      return {...state, allRecipes: dietFilter }
 
     case FILTER_CREATED:
       const copyRecipes = state.allRecipes
       const createdfilter = action.payload === 'bdd' ? copyRecipes.filter(el => el.createdByDb) : copyRecipes.filter(el => !el.createdByDb)
-      return {
-        ...state,
-        allRecipes: action.payload === 'all' ? state.allRecipes : createdfilter
-      }
+      return {...state, allRecipes: action.payload === 'all' ? state.allRecipes : createdfilter }
 
     case ORDER_BY_NAME:
       const sortedRecipes = [...state.allRecipes];
       const sortArr = action.payload === "asc"
         ? sortedRecipes.sort(function (a, b) {
-          if (a.title.toLowerCase() < b.title.toLowerCase()) {
-            return -1;
-          }
-          if (a.title.toLowerCase() > b.title.toLowerCase()) {
-            return 1;
-          }
+          if (a.title.toLowerCase() < b.title.toLowerCase()) return -1;
+          if (a.title.toLowerCase() > b.title.toLowerCase()) return 1;
           return 0;
         })
         : sortedRecipes.sort(function (a, b) {
-          if (a.title.toLowerCase() > b.title.toLowerCase()) {
-            return -1;
-          }
-          if (a.title.toLowerCase() < b.title.toLowerCase()) {
-            return 1;
-          }
+          if (a.title.toLowerCase() > b.title.toLowerCase()) return -1;
+          if (a.title.toLowerCase() < b.title.toLowerCase()) return 1;
           return 0;
         });
-      return {
-        ...state,
-        allRecipes: sortArr
-      };
+      return {...state, allRecipes: sortArr};
 
     case ORDER_BY_HEALTH_SCORE:
       const copyState = [...state.allRecipes]
       const orderHS = action.payload === 'des' ? copyState.sort((a, b) => b.healthScore - a.healthScore)
         : copyState.sort((a, b) => a.healthScore - b.healthScore)
-      return {
-        ...state,
-        allRecipes: orderHS
-      };
+      return {...state, allRecipes: orderHS};
 
     case CREATE_RECIPE:
-      return {
-        ...state
-      };
+      return { ...state };
 
+    case DELETE_RECIPE:
+      return { ...state, allRecipes: action.payload};
 
+      
     default:
       return { ...state };
   }
