@@ -11,10 +11,10 @@ import Paginado from '../../components/Paginado/Paginado';
 
 const Home = () => {
 
-    const dispatch = useDispatch();   //REDUX
+    const dispatch = useDispatch();   
     const allRecipes = useSelector((state) => state.allRecipes);
     const recipes = useSelector((state)=> state.recipes);
-    const [var1, setVar1] = useState(false)
+    //const [var1, setVar1] = useState(false)
 
     useEffect(() => {
         dispatch(getDiets())
@@ -39,28 +39,27 @@ const Home = () => {
         setCurrentPage(pageNumber);
     };
 
-    const mostrarNavBar = (mostrar) => {
-        setVar1(mostrar)
-    }
+    // const mostrarNavBar = (mostrar) => {
+    //     setVar1(mostrar)
+    // }
     return (
 
         <div className={style.container}>
-            <div>
+            {/* <div>
                 {
                     var1 === true ? <NavBar /> : null
                 }
-                <button onClick={() => mostrarNavBar(true)}>
+                <button className= {style.button2} onClick={() => mostrarNavBar(true)}>
                     Mostrar Barra de Navegación
                 </button>
 
-                <button onClick={() => mostrarNavBar(false)}>
+                <button className= {style.button2} onClick={() => mostrarNavBar(false)}>
                     Ocultar Barra de Navegación
                 </button>
-                <button onClick={() => dispatch(getAllRecipes())}>
-                    Reload Recipes
-                </button>/
-            </div>
+                
+            </div> */}
 
+            <NavBar />
             <div className={style.name}>
                 <h1>Welcome to Food App</h1>
                 <SearchComponent setCurrentPage={setCurrentPage} />
