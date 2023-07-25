@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import style from "./Form.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { createRecipe } from '../../redux/actions';
+import { createRecipe,getAllRecipes } from '../../redux/actions';
 
 const Form = () => {
     const dispatch = useDispatch();
@@ -85,7 +85,9 @@ const Form = () => {
         }
         dispatch(createRecipe(form));
         alert("Successful registration!");
-        navigate("/home");
+        //navigate("/home");
+        setTimeout(() => {dispatch(getAllRecipes())}, 500);
+        setTimeout(() => {navigate("/home")}, 1500);
     };
 
     return (
@@ -193,10 +195,11 @@ const Form = () => {
                         </div>
                         {errors.image && <span className={style.error} >{errors.image}</span>}
                         <hr />
-                        <button type="submit" className={style.button}> Submit </button>  
-                        <div className={style.btnhome}>
+                        
+                        <div className={style.button2}>
+                            <button type="submit" className={style.button}> Submit </button>  
                             <Link to="/home">
-                                <button className={style.button}>Return Home</button>
+                                <button className={style.button}> Home</button>
                             </Link>
                         </div>
 

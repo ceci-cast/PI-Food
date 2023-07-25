@@ -41,12 +41,12 @@ const rootReducer = (state = initialState, action) => {
     case FILTER_BY_DIET:
       const allRecipes = state.allRecipes
       const dietFilter = action.payload === 'all' ? allRecipes : allRecipes.filter(ele => ele.diets?.includes(action.payload))
-      return {...state, allRecipes: dietFilter }
+      return {...state, recipes: dietFilter }
 
     case FILTER_CREATED:
       const copyRecipes = state.allRecipes
       const createdfilter = action.payload === 'bdd' ? copyRecipes.filter(el => el.createdByDb) : copyRecipes.filter(el => !el.createdByDb)
-      return {...state, allRecipes: action.payload === 'all' ? state.allRecipes : createdfilter }
+      return {...state, recipes: action.payload === 'all' ? state.recipes : createdfilter }
 
     case ORDER_BY_NAME:
       const sortedRecipes = [...state.allRecipes];
@@ -61,19 +61,19 @@ const rootReducer = (state = initialState, action) => {
           if (a.title.toLowerCase() < b.title.toLowerCase()) return 1;
           return 0;
         });
-      return {...state, allRecipes: sortArr};
+      return {...state, recipes: sortArr};
 
     case ORDER_BY_HEALTH_SCORE:
       const copyState = [...state.allRecipes]
       const orderHS = action.payload === 'des' ? copyState.sort((a, b) => b.healthScore - a.healthScore)
         : copyState.sort((a, b) => a.healthScore - b.healthScore)
-      return {...state, allRecipes: orderHS};
+      return {...state, recipes: orderHS};
 
     case CREATE_RECIPE:
       return { ...state };
 
     case DELETE_RECIPE:
-      return { ...state, allRecipes: action.payload};
+      return { ...state, recipes: action.payload};
 
       
     default:

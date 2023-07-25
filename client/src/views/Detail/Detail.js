@@ -20,8 +20,8 @@ const Detail = () => {
 
     const handleDelete = (id) => {
         dispatch(deleteRecipe(id));
-        dispatch(getAllRecipes());
-        //setTimeout(() => {navigate("/home")}, 1000);
+        setTimeout(() => {dispatch(getAllRecipes())}, 500);
+        setTimeout(() => {navigate("/home")}, 1500);
        
     };
 

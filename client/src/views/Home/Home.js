@@ -17,8 +17,9 @@ const Home = () => {
     const [var1, setVar1] = useState(false)
 
     useEffect(() => {
+        dispatch(getDiets())
         if (allRecipes.length === 0) {
-            dispatch(getAllRecipes()) //dispatch(getDiets())
+            dispatch(getAllRecipes()) 
         }
     }, [dispatch,allRecipes]);
 
